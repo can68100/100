@@ -1,0 +1,224 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --bg-color: #090a0f;
+    --card-bg: #131520;
+    --primary-color: #ff003c; /* Modern Canlı Kırmızı */
+    --text-color: #ffffff;
+    --text-muted: #8e94a5;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navigasyon Barı */
+header {
+    background-color: rgba(9, 10, 15, 0.95);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #1c1f30;
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span { color: var(--primary-color); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover, .nav-links li a.active {
+    color: var(--primary-color);
+}
+
+.search-box { display: flex; }
+.search-box input {
+    padding: 10px 15px;
+    border: 1px solid #22263f;
+    background-color: var(--card-bg);
+    color: white;
+    border-radius: 25px 0 0 25px;
+    outline: none;
+    width: 200px;
+    transition: 0.3s;
+}
+.search-box input:focus { width: 250px; border-color: var(--primary-color); }
+.search-box button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+}
+
+/* Hero Bölümü */
+.hero {
+    height: 70vh;
+    background: linear-gradient(to top, var(--bg-color), rgba(9,10,15,0.4)), linear-gradient(to right, rgba(9,10,15,0.9), rgba(9,10,15,0.2)), url('https://unsplash.com') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+}
+
+.badge {
+    background-color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#hero-title { font-size: 54px; margin: 15px 0 5px 0; font-weight: 800; }
+#hero-desc { color: var(--text-muted); max-width: 600px; margin-bottom: 30px; font-size: 16px; }
+
+.btn {
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.3s;
+}
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 0, 60, 0.4); }
+
+/* Film Grid Yapısı */
+.section-title { margin: 50px 0 25px; font-size: 26px; font-weight: 700; position: relative; padding-left: 15px; }
+.section-title::before { content: ''; position: absolute; left: 0; top: 15%; height: 70%; width: 4px; background-color: var(--primary-color); }
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 70px;
+}
+
+.movie-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(255, 0, 60, 0.25);
+}
+.movie-card img { width: 100%; height: 320px; object-fit: cover; transition: 0.3s; }
+.movie-card:hover img { transform: scale(1.03); }
+.movie-info { padding: 18px; }
+.movie-info h3 { font-size: 17px; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.movie-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); }
+.rating { color: #ffb400; font-weight: bold; }
+
+/* Pop-Up (Modal) CSS */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.92);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: var(--card-bg);
+    width: 95%; max-width: 800px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    animation: zoomIn 0.3s ease;
+}
+.close-modal {
+    position: absolute; right: 20px; top: 15px;
+    font-size: 35px; color: white; cursor: pointer; z-index: 10;
+    transition: 0.2s;
+}
+.close-modal:hover { color: var(--primary-color); }
+
+.modal-body { padding: 30px; display: flex; flex-direction: column; gap: 20px; }
+
+/* 16:9 Video Alanı */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0; overflow: hidden;
+    border-radius: 10px;
+    background-color: #000;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border: none;
+}
+
+.modal-desc h2 { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
+.modal-desc p { color: var(--text-muted); font-size: 15px; margin-top: 15px; line-height: 1.6; }
+
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+/* Footer */
+footer { background-color: #05060a; padding: 30px 0; text-align: center; border-top: 1px solid #131520; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.social-links a { color: var(--text-muted); margin-left: 20px; font-size: 20px; transition: 0.3s; }
+.social-links a:hover { color: var(--primary-color); }
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; }
+    .nav-links { margin-bottom: 10px; }
+    .search-box input { width: 160px; }
+    .search-box input:focus { width: 200px; }
+    .hero { text-align: center; background-position: top; }
+    #hero-title { font-size: 38px; }
+    .footer-content { flex-direction: column; gap: 15px; }
+    .modal-body { padding: 20px 15px; }
+}
